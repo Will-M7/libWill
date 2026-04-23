@@ -1,52 +1,28 @@
 # libWill
 
-Backend base de libWill preparado para evolucionar hacia una arquitectura de microservicios con Spring Boot, Docker, Config Server, Eureka, Gateway y Feign.
+Backend de `libWill` con base distribuida funcional para U1: Config Server, Eureka, Gateway y `producto-service`.
 
-## Estado actual
+## Estado actual (U1)
 
-Este repositorio contiene el backend inicial funcionando como una sola aplicacion Spring Boot, ya renombrada a `libWill` y lista para trabajar con Docker.
-
-Componentes actuales:
+Componentes implementados:
 
 - Spring Boot 3.5.x
 - Java 17
 - Maven
 - MySQL 8.4 en Docker
-- JWT
-- Spring Security
-- Spring Data JPA
-- Docker Compose
+- Config Server (`infra/config-server`)
+- Registry/Eureka (`infra/registry-server`)
+- API Gateway (`infra/gateway`)
+- Microservicio `producto-service` (`services/producto-service`)
+- Config Repo centralizado (`infra/config-repo`)
 
-## Ejecutar con Docker
+## Servicios y puertos (dev)
 
-Desde la raiz del proyecto:
-
-```powershell
-docker compose up -d --build
-```
-
-Servicios publicados:
-
-```text
-Backend: http://localhost:8080
-MySQL: localhost:3308
-Base de datos: libWill
-Usuario MySQL: root
-Password MySQL: root
-```
-
-Probar backend:
-
-```powershell
-curl.exe http://localhost:8080/api/productos
-```
-
-## Credenciales iniciales
-
-```text
-Usuario: administrador
-Password: admin12345
-```
+- Config Server: `http://localhost:7071`
+- Eureka: `http://localhost:7081`
+- Gateway: `http://localhost:7091`
+- Producto Service: `http://localhost:9091`
+- MySQL producto: `localhost:3391`
 
 ## Estructura
 
@@ -54,24 +30,22 @@ Password: admin12345
 libWill/
   infra/
     config-repo/
+    config-server/
+    registry-server/
+    gateway/
   services/
-  src/
-  docker-compose.yml
-  Dockerfile
+    producto-service/
   ARCHITECTURE.md
 ```
 
-## Roadmap
+## Estado por hito
 
-El orden de trabajo seguira el avance de clases:
-
-1. `vs00-libwill-base`: backend base con Docker.
-2. `vs01-config-server`: configuracion centralizada.
-3. `vs02-registry-server`: descubrimiento de servicios con Eureka.
-4. `vs03-gateway`: entrada unificada con Spring Cloud Gateway.
-5. `vs04-producto-service`: primer microservicio extraido.
-6. `vs05-feign`: comunicacion entre servicios.
-7. `vs06-circuit-breaker`: resiliencia.
+- `vs00-libwill-base`: base en Docker.
+- `vs01-producto-service`: microservicio de productos.
+- `vs02-config-server`: configuracion centralizada.
+- `vs03-registry-server`: descubrimiento de servicios.
+- `gateway`: implementado y enruta `producto-service`.
+- Siguiente: Feign + seguridad + resiliencia (U2).
 
 ## Documentacion
 

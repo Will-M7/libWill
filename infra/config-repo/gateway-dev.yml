@@ -1,0 +1,24 @@
+server:
+  port: 7091
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: producto-route
+              uri: lb://producto-service
+              predicates:
+                - Path=/api/productos/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7081/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

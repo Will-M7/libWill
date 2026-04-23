@@ -2,7 +2,13 @@
 
 ## Estado actual
 
-`libWill` funciona como backend Spring Boot unico, con MySQL en Docker.
+Base distribuida de U1 implementada y funcional:
+
+- Config Server
+- Registry Server (Eureka)
+- API Gateway
+- producto-service
+- MySQL Docker para el microservicio
 
 ## Estado objetivo
 
@@ -24,10 +30,10 @@ Cliente
 
 ## Orden de evolucion
 
-1. Dockerizar base de datos y backend.
-2. Crear `config-server`.
-3. Mover configuraciones a `infra/config-repo`.
-4. Crear `registry-server`.
-5. Crear `gateway`.
-6. Separar `producto-service`.
-7. Integrar servicios con Feign.
+1. Dockerizar base de datos y backend. (completado)
+2. Crear `config-server`. (completado)
+3. Mover configuraciones a `infra/config-repo`. (completado)
+4. Crear `registry-server`. (completado)
+5. Crear `gateway`. (completado)
+6. Separar `producto-service`. (completado)
+7. Integrar servicios con Feign. (siguiente paso)

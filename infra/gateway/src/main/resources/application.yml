@@ -1,10 +1,7 @@
 spring:
   application:
-    name: producto-service
+    name: gateway
   profiles:
     active: dev
   config:
     import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:7071}"
-
-server:
-  address: 0.0.0.0

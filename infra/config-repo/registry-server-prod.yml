@@ -1,0 +1,15 @@
+server:
+  port: 7081
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://registry-server:7081/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
