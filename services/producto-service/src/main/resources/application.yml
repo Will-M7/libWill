@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: producto-service
+  profiles:
+    active: dev
+
+server:
+  address: 0.0.0.0
