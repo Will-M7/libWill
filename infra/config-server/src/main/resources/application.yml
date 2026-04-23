@@ -1,0 +1,21 @@
+server:
+  port: 7071
+
+spring:
+  application:
+    name: config-server
+
+  profiles:
+    active: native
+
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:///D:/Proyecto/cuak/back/Molineria/infra/config-repo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
