@@ -1,0 +1,26 @@
+server:
+  port: 9098
+
+spring:
+  datasource:
+    url: jdbc:mysql://${PAGO_DB_HOST:mysql}:${PAGO_DB_PORT:3306}/${PAGO_DB_NAME:db_pago}?createDatabaseIfNotExist=true
+    username: ${PAGO_DB_USERNAME:root}
+    password: ${PAGO_DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://registry-server:7081/eureka

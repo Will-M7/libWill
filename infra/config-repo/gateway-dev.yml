@@ -11,6 +11,18 @@ spring:
               uri: lb://producto-service
               predicates:
                 - Path=/api/productos/**
+            - id: inventario-route
+              uri: lb://inventario-service
+              predicates:
+                - Path=/api/inventarios/**
+            - id: venta-route
+              uri: lb://venta-service
+              predicates:
+                - Path=/api/ventas/**
+            - id: pago-route
+              uri: lb://pago-service
+              predicates:
+                - Path=/api/pagos/**
 
 eureka:
   client:
