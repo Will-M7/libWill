@@ -1,4 +1,4 @@
-package com.libwill.producto_service;
+package com.libwill.producto;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
