@@ -1,0 +1,52 @@
+name: libwill-prod
+
+services:
+  mysql-libwill:
+    image: mysql:8.4
+    container_name: mysql-libwill
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${LIBWILL_MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${LIBWILL_DB_NAME:-libWill}
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_libwill_data:/var/lib/mysql
+    networks:
+      - libwill-net
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p${LIBWILL_MYSQL_ROOT_PASSWORD:-root} || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  libwill:
+    build: .
+    container_name: libwill
+    restart: unless-stopped
+    depends_on:
+      mysql-libwill:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      LIBWILL_DB_HOST: mysql-libwill
+      LIBWILL_DB_PORT: 3306
+      LIBWILL_DB_NAME: ${LIBWILL_DB_NAME:-libWill}
+      LIBWILL_DB_USERNAME: root
+      LIBWILL_DB_PASSWORD: ${LIBWILL_MYSQL_ROOT_PASSWORD:-root}
+      LIBWILL_JWT_SECRET: ${LIBWILL_JWT_SECRET:-SecretKeyLIBWILL1234567890SUPERSEGURA2026!}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./static.imagenes:/app/static.imagenes
+    networks:
+      - libwill-net
+
+volumes:
+  mysql_libwill_data:
+
+networks:
+  libwill-net:
+    name: libwill-net

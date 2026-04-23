@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: libwill
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  address: 0.0.0.0
+
+libwill:
+  app:
+    jwtSecret: ${LIBWILL_JWT_SECRET:SecretKeyLIBWILL1234567890SUPERSEGURA2026!}
+    jwtExpirationMs: ${LIBWILL_JWT_EXPIRATION_MS:86400000}

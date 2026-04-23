@@ -1,0 +1,23 @@
+name: libwill-dev
+
+services:
+  mysql-libwill-dev:
+    image: mysql:8.4
+    container_name: mysql-libwill-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: libWill
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_libwill_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  mysql_libwill_dev_data:
