@@ -27,6 +27,13 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    public SaleDTO getBySaleCode(String saleCode) {
+        SaleEntity entity = repository.findBySaleCode(saleCode)
+                .orElseThrow(() -> new NotFoundException("Venta no encontrada con codigo " + saleCode));
+        return toDto(entity);
+    }
+
+    @Override
     public SaleDTO create(SaleDTO dto) {
         if (repository.existsBySaleCode(dto.getSaleCode())) {
             throw new RuntimeException("Ya existe una venta con ese codigo");

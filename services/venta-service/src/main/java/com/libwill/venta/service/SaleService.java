@@ -7,6 +7,7 @@ import java.util.List;
 public interface SaleService {
     List<SaleDTO> getAll();
     SaleDTO getById(Long id);
+    SaleDTO getBySaleCode(String saleCode);
     SaleDTO create(SaleDTO dto);
     SaleDTO update(Long id, SaleDTO dto);
     void delete(Long id);

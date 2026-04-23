@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3391/db_inventario?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3392/db_inventario
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver

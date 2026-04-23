@@ -27,6 +27,11 @@ public class PaymentController {
         return ResponseEntity.ok(service.getById(id));
     }
 
+    @GetMapping("/venta/{saleCode}")
+    public ResponseEntity<List<PaymentDTO>> getBySaleCode(@PathVariable String saleCode) {
+        return ResponseEntity.ok(service.getBySaleCode(saleCode));
+    }
+
     @PostMapping
     public ResponseEntity<PaymentDTO> create(@Valid @RequestBody PaymentDTO dto) {
         return ResponseEntity.ok(service.create(dto));

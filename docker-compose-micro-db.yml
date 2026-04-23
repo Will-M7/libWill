@@ -1,0 +1,80 @@
+name: libwill-micro-db
+
+services:
+  mysql-producto-dev:
+    image: mysql:8.4
+    container_name: mysql-producto-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_producto
+    ports:
+      - "3391:3306"
+    volumes:
+      - mysql_producto_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  mysql-inventario-dev:
+    image: mysql:8.4
+    container_name: mysql-inventario-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_inventario
+    ports:
+      - "3392:3306"
+    volumes:
+      - mysql_inventario_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  mysql-venta-dev:
+    image: mysql:8.4
+    container_name: mysql-venta-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_venta
+    ports:
+      - "3393:3306"
+    volumes:
+      - mysql_venta_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  mysql-pago-dev:
+    image: mysql:8.4
+    container_name: mysql-pago-dev
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_pago
+    ports:
+      - "3394:3306"
+    volumes:
+      - mysql_pago_dev_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -proot || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  mysql_producto_dev_data:
+  mysql_inventario_dev_data:
+  mysql_venta_dev_data:
+  mysql_pago_dev_data:

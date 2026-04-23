@@ -27,6 +27,11 @@ public class SaleController {
         return ResponseEntity.ok(service.getById(id));
     }
 
+    @GetMapping("/codigo/{saleCode}")
+    public ResponseEntity<SaleDTO> getBySaleCode(@PathVariable String saleCode) {
+        return ResponseEntity.ok(service.getBySaleCode(saleCode));
+    }
+
     @PostMapping
     public ResponseEntity<SaleDTO> create(@Valid @RequestBody SaleDTO dto) {
         return ResponseEntity.ok(service.create(dto));

@@ -27,6 +27,11 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    public List<PaymentDTO> getBySaleCode(String saleCode) {
+        return repository.findBySaleCode(saleCode).stream().map(this::toDto).toList();
+    }
+
+    @Override
     public PaymentDTO create(PaymentDTO dto) {
         if (repository.existsByPaymentCode(dto.getPaymentCode())) {
             throw new RuntimeException("Ya existe un pago con ese codigo");

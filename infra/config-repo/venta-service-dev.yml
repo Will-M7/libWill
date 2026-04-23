@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3391/db_venta?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3393/db_venta
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
